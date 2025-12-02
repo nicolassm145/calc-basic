@@ -22,7 +22,7 @@ bison -d calc.y
 flex calc.l
 
 # 3. Compilar tudo com GCC
-gcc calc.tab.c lex.yy.c -o calc_c
+gcc calc.tab.c lex.yy.c -o calc
 ```
 
 **Comando único:**
