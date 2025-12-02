@@ -112,6 +112,6 @@ sudo apt-get install flex bison gcc
 ```
 
 
-## 📄 Licença
+## Licença
 
 Veja o arquivo [LICENSE](LICENSE) para mais detalhes.

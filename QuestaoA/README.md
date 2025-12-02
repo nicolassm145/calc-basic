@@ -138,6 +138,6 @@ Erro: syntax error
 ---
 
 
-## 📄 Licença
+## Licença
 
 Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
