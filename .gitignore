@@ -1,0 +1,14 @@
+# Arquivos gerados pelo Bison/Flex
+*.tab.c
+*.tab.h
+lex.yy.c
+
+# Executáveis e objetos
+*.o
+*.exe
+calcparser
+a.out
+
+# Arquivos do sistema
+.DS_Store
+*~
