@@ -6,7 +6,7 @@
 %%
 
 [0-9]+          { 
-                  yylval = atoi(yytext); 
+                  yylval.num = atoi(yytext); 
                   printf("[LEX] Número reconhecido: %s\n", yytext);
                   return NUM; 
                 }

@@ -6,13 +6,13 @@
 %%
 
 [0-9]+\.[0-9]+  { 
-                  yylval = atof(yytext); 
+                  yylval.num = atof(yytext); 
                   printf("[LEX] Número real reconhecido: %s\n", yytext);
                   return NUM; 
                 }
 
 [0-9]+          { 
-                  yylval = atof(yytext); 
+                  yylval.valor = atof(yytext); 
                   printf("[LEX] Número inteiro reconhecido: %s\n", yytext);
                   return NUM; 
                 }

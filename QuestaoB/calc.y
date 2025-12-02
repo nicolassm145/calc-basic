@@ -7,10 +7,13 @@
 %}
 
 /* Com isso agora funciona numeros reais */
-%define api.value.type {double}
+%union {
+  double num;
+}
 
 /* Tokens do Lexico */
-%token NUM
+%token <num> num
+%type <num> expressao termo fator
 %token MAIS MENOS VEZES DIVIDE
 %token ESQPAREN DIRPAREN
 %token EOL
@@ -70,7 +73,7 @@ termo:
     ;
 
 fator:
-    NUM { 
+    num { 
         printf("[BISON] Redução: F → N = %.4f\n", $1);
         $$ = $1; 
       }

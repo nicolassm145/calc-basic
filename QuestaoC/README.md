@@ -56,7 +56,7 @@ Para sair: **Ctrl+D** (Linux/Mac) ou **Ctrl+Z** (Windows)
 
 ### Teste 1 - Exemplo da Questão (`teste1.txt`)
 ```bash
-./calc_c < teste1.txt
+./calc < teste1.txt
 ```
 
 **Conteúdo:**
@@ -85,7 +85,7 @@ RESULTADO = 3.0340         (9.234 - 3 - 3.2)
 
 ### Teste 2 - Variáveis com Multiplicação (`teste2.txt`)
 ```bash
-./calc_c < teste2.txt
+./calc < teste2.txt
 ```
 
 **Conteúdo:**
@@ -106,7 +106,7 @@ RESULTADO = 59.5000        (5 * 10.5 + 7)
 
 ### Teste 3 - Atribuição e Divisão (`teste3.txt`)
 ```bash
-./calc_c < teste3.txt
+./calc < teste3.txt
 ```
 
 **Conteúdo:**

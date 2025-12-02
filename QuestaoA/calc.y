@@ -6,11 +6,17 @@
   void yyerror(const char *s);
 %}
 
+%union {
+  int num;
+}
+
 /* Tokens do Lexico */
-%token NUM
+%token <num> NUM
 %token MAIS MENOS VEZES DIVIDE
 %token ESQPAREN DIRPAREN
 %token EOL
+
+%type <num> expressao termo fator
 
 /* Pra fazer calculo certo */
 %left MAIS MENOS
