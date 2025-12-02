@@ -1,7 +1,8 @@
-# Calculadora Simples - Flex + Bison 
+# Calculadora - Flex + Bison
 
-##  Descrição
-Implementação de uma calculadora simples usando **Flex** (analisador léxico) e **Bison** (analisador sintático) baseada na seguinte Gramática Livre de Contexto (GLC):
+## Descrição Geral
+
+Este repositório contém a implementação de calculadoras usando **Flex** (analisador léxico) e **Bison** (analisador sintático), baseadas na seguinte Gramática Livre de Contexto (GLC):
 
 ```
 S → E
@@ -10,130 +11,97 @@ T → T * F | T / F | F
 F → N | ( E )
 ```
 
-Onde: `N = [0-9]+` (números inteiros)
-
-### Restrições
-- A calculadora aceita **apenas números inteiros**
-- Números reais (ex: `2.5`, `3.14`) **não são suportados** e gerarão erro
-- Demonstra o funcionamento dos analisadores léxico e sintático
+As implementações demonstram o funcionamento dos analisadores léxico e sintático com diferentes requisitos.
 
 ---
 
+##  Estrutura do Projeto
 
-## Como Compilar
+```
+calc-basic/
+├── QuestaoA/          # Questão A: Apenas números inteiros
+│   ├── calc.l         # Analisador léxico
+│   ├── calc.y         # Analisador sintático
+│   ├── teste1.txt     # Teste: operação simples
+│   ├── teste2.txt     # Teste: com parênteses
+│   ├── teste3.txt     # Teste: números reais (erro esperado)
+│   └── README.md      # Documentação detalhada da Questão A
+│
+├── QuestaoB/          # Questão B: Números inteiros E reais
+│   ├── calc.l         # Analisador léxico (modificado)
+│   ├── calc.y         # Analisador sintático (modificado)
+│   ├── teste1.txt     # Teste: dois números reais
+│   ├── teste2.txt     # Teste: inteiro × real
+│   ├── teste3.txt     # Teste: operação complexa com reais
+│   └── README.md      # Documentação detalhada da Questão B
+│
+├── LICENSE
+└── README.md          # Este arquivo
+```
 
-### Pré-requisitos
+---
+
+## Questões Implementadas
+
+### Questão A - Calculadora com Números Inteiros
+
+**Requisito:** Implementar calculadora empregando flex + bison que aceita **apenas números inteiros**.
+
+**Características:**
+- ✅ N = `[0-9]+` (somente inteiros)
+- ✅ Números reais **geram erro**
+- ✅ Rastreamento completo das ações dos analisadores
+- ✅ 2 testes com rastreamento + 1 teste com números reais (erro)
+
+**Acesse:** [`QuestaoA/README.md`](QuestaoA/README.md)
+
+**Como compilar e executar:**
+```bash
+cd QuestaoA
+bison -d calc.y && flex calc.l && gcc calc.tab.c lex.yy.c -o calc
+./calc < teste1.txt  # Operação simples
+./calc < teste2.txt  # Com parênteses
+./calc < teste3.txt  # Números reais (erro)
+```
+
+---
+
+### Questão B - Calculadora com Números Inteiros E Reais
+
+**Requisito:** Modificar a implementação da calculadora possibilitando cálculos com **números inteiros e reais**.
+
+**Características:**
+- ✅ Aceita números inteiros: `5`, `42`, `100`
+- ✅ Aceita números reais: `2.5`, `3.14`, `10.0`
+- ✅ Usa tipo `double` para precisão
+- ✅ Formato de saída com 4 casas decimais
+- ✅ Rastreamento completo das ações dos analisadores
+
+**Acesse:** [`QuestaoB/README.md`](QuestaoB/README.md)
+
+**Como compilar e executar:**
+```bash
+cd QuestaoB
+bison -d calc.y && flex calc.l && gcc calc.tab.c lex.yy.c -o calc
+./calc < teste1.txt  # Dois números reais
+./calc < teste2.txt  # Inteiro × real
+./calc < teste3.txt  # Operação complexa
+```
+
+---
+
+## Pré-requisitos
+
+Para compilar e executar os programas, você precisa ter instalado:
 - `flex` (analisador léxico)
 - `bison` (analisador sintático)
 - `gcc` (compilador C)
 
-### Comandos de Compilação
-
+### Instalação no Ubuntu/Debian:
 ```bash
-# 1. Gerar o parser com Bison
-bison -d calc.y
-
-# 2. Gerar o scanner com Flex
-flex calc.l
-
-# 3. Compilar tudo com GCC
-gcc calc.tab.c lex.yy.c -o calc
+sudo apt-get install flex bison gcc
 ```
 
-**Comando único:**
-```bash
-bison -d calc.y && flex calc.l && gcc calc.tab.c lex.yy.c -o calc
-```
-
----
-
-## Como Executar
-
-### Modo Interativo
-```bash
-./calc
-```
-
-Digite expressões e pressione **ENTER** para ver o resultado:
-```
-2 + 3
-5 * 4 - 2
-(10 + 5) / 3
-```
-
-Para sair: **Ctrl+D** (Linux/Mac) ou **Ctrl+Z** (Windows)
-
-### Usando Arquivos de Teste
-
-#### Teste 1 - Operação Simples (`5 + 3`)
-```bash
-./calc < teste1.txt
-```
-
-**Saída esperada:**
-```
-[LEX] Número reconhecido: 5
-[LEX] Operador: +
-[LEX] Número reconhecido: 3
-[LEX] Nova linha
-[BISON] Redução: F → N = 5
-[BISON] Redução: T → F = 5
-[BISON] Redução: E → T = 5
-[BISON] Redução: F → N = 3
-[BISON] Redução: T → F = 3
-[BISON] Redução: E + T = 5 + 3 = 8
-
-===> RESULTADO = 8
-```
-
-#### Teste 2 - Operação com Parênteses (`10 * (2 + 3)`)
-```bash
-./calc < teste2.txt
-```
-
-**Saída esperada:**
-```
-[LEX] Número reconhecido: 10
-[LEX] Operador: *
-[LEX] Parêntese: (
-[LEX] Número reconhecido: 2
-[LEX] Operador: +
-[LEX] Número reconhecido: 3
-[LEX] Parêntese: )
-[LEX] Nova linha
-[BISON] Redução: F → N = 10
-[BISON] Redução: T → F = 10
-[BISON] Redução: F → N = 2
-[BISON] Redução: T → F = 2
-[BISON] Redução: E → T = 2
-[BISON] Redução: F → N = 3
-[BISON] Redução: T → F = 3
-[BISON] Redução: E + T = 2 + 3 = 5
-[BISON] Redução: F → (E) = 5
-[BISON] Redução: T * F = 10 * 5 = 50
-
-===> RESULTADO = 50
-```
-
-#### Teste 3 - Números Reais (`7.5 + 2.3`) - **ERRO ESPERADO**
-```bash
-./calc < teste3.txt
-```
-
-**Saída esperada:**
-```
-[LEX] Número reconhecido: 7
-[LEX] Caractere inválido: .
-[LEX] Número reconhecido: 5
-[LEX] Operador: +
-[LEX] Número reconhecido: 2
-[LEX] Caractere inválido: .
-[LEX] Número reconhecido: 3
-[LEX] Nova linha
-Erro: syntax error
-```
-
-**Explicação:** O analisador léxico reconhece números inteiros separadamente e trata o `.` como caractere inválido, causando erro sintático.
 
 ---
 
