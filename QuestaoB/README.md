@@ -10,24 +10,6 @@ T → T * F | T / F | F
 F → N | ( E )
 ```
 
-### Modificações da Parte B
-- A calculadora aceita **números inteiros E reais**
-- Suporta números decimais (ex: `2.5`, `3.14`, `10.0`)
-- Usa tipo `double` para todos os cálculos
-- Mantém o rastreamento completo dos analisadores
-
-### Mudanças Implementadas
-
-#### Analisador Léxico (calc.l)
-- **Regex ampliada:** `[0-9]+\.[0-9]+` para números reais
-- **Conversão:** `atof()` ao invés de `atoi()`
-- Reconhece tanto inteiros quanto reais
-
-#### Analisador Sintático (calc.y)
-- **Tipo de valor:** `%define api.value.type {double}`
-- **Formato de saída:** `%.4f` (4 casas decimais)
-- Todos os cálculos usam precisão de ponto flutuante
-
 ---
 
 ## Como Compilar

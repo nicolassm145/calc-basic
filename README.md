@@ -15,7 +15,7 @@ As implementações demonstram o funcionamento dos analisadores léxico e sintá
 
 ---
 
-##  Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 calc-basic/
@@ -35,25 +35,25 @@ calc-basic/
 │   ├── teste3.txt     # Teste: operação complexa com reais
 │   └── README.md      # Documentação detalhada da Questão B
 │
+├── QuestaoC/          # Questão C: Com suporte a variáveis
+│   ├── calc.l         # Analisador léxico (com variáveis)
+│   ├── calc.y         # Analisador sintático (com tabela de símbolos)
+│   ├── teste1.txt     # Teste: exemplo da questão
+│   ├── teste2.txt     # Teste: variáveis com multiplicação
+│   ├── teste3.txt     # Teste: atribuição e divisão
+│   └── README.md      # Documentação detalhada da Questão C
+│
 ├── LICENSE
-└── README.md          # Este arquivo
+└── README.md          
 ```
 
 ---
 
 ## Questões Implementadas
 
-### Questão A - Calculadora com Números Inteiros
+### **[`Questão A`](QuestaoA/README.md)** - Calculadora com Números Inteiros
 
 **Requisito:** Implementar calculadora empregando flex + bison que aceita **apenas números inteiros**.
-
-**Características:**
-- ✅ N = `[0-9]+` (somente inteiros)
-- ✅ Números reais **geram erro**
-- ✅ Rastreamento completo das ações dos analisadores
-- ✅ 2 testes com rastreamento + 1 teste com números reais (erro)
-
-**Acesse:** [`QuestaoA/README.md`](QuestaoA/README.md)
 
 **Como compilar e executar:**
 ```bash
@@ -66,18 +66,10 @@ bison -d calc.y && flex calc.l && gcc calc.tab.c lex.yy.c -o calc
 
 ---
 
-### Questão B - Calculadora com Números Inteiros E Reais
+### **[`Questão B`](QuestaoB/README.md)** - Calculadora com Números Inteiros E Reais
 
-**Requisito:** Modificar a implementação da calculadora possibilitando cálculos com **números inteiros e reais**.
 
-**Características:**
-- ✅ Aceita números inteiros: `5`, `42`, `100`
-- ✅ Aceita números reais: `2.5`, `3.14`, `10.0`
-- ✅ Usa tipo `double` para precisão
-- ✅ Formato de saída com 4 casas decimais
-- ✅ Rastreamento completo das ações dos analisadores
-
-**Acesse:** [`QuestaoB/README.md`](QuestaoB/README.md)
+**Requisito:** Implementação **modificada** de uma calculadora que aceita **números inteiros e reais**.
 
 **Como compilar e executar:**
 ```bash
@@ -90,20 +82,34 @@ bison -d calc.y && flex calc.l && gcc calc.tab.c lex.yy.c -o calc
 
 ---
 
-## Pré-requisitos
+### **[`Questão C`](QuestaoC/README.md)** - Calculadora com Variáveis
+
+**Requisito:** Ampliar a calculadora para admitir **variáveis identificadas por uma letra** e permitir operações com elas.
+
+**Como compilar e executar:**
+```bash
+cd QuestaoC
+bison -d calc.y && flex calc.l && gcc calc.tab.c lex.yy.c -o calc
+./calc < teste1.txt  # Exemplo da questão
+./calc < teste2.txt  # Variáveis com multiplicação
+./calc < teste3.txt  # Atribuição e divisão
+```
+
+---
+
+---
+
+## 🔧 Pré-requisitos
 
 Para compilar e executar os programas, você precisa ter instalado:
 - `flex` (analisador léxico)
 - `bison` (analisador sintático)
 - `gcc` (compilador C)
 
-### Instalação no Ubuntu/Debian:
+### Instalação no Ubuntu:
 ```bash
 sudo apt-get install flex bison gcc
 ```
-
-
----
 
 
 ## 📄 Licença

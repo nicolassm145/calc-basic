@@ -9,6 +9,12 @@ lex.yy.c
 calcparser
 a.out
 
+# Executáveis das questões
+QuestaoA/calc
+QuestaoB/calc
+QuestaoC/calc
+
 # Arquivos do sistema
 .DS_Store
 *~
+
